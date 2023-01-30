@@ -53,6 +53,7 @@ MonoBehaviour:
   isLast: 1
   end: {fileID: 8822824144221415489}
   rb: {fileID: 5103399360265276073}
+  endrb: {fileID: 0}
 --- !u!54 &5103399360265276073
 Rigidbody:
   m_ObjectHideFlags: 0

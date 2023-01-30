@@ -10,6 +10,7 @@ public class RootPart : MonoBehaviour
     public bool isLast = true;
     public Transform end;
     public Rigidbody rb;
+    public Rigidbody endrb;
 
     private void Start()
     {
@@ -23,6 +24,7 @@ public class RootPart : MonoBehaviour
         nextPart.transform.position = end.position;
         // nextPart.GetComponent<RootPart>().model.rotation.SetLookRotation(vec);
         nextPart.GetComponent<Joint>().connectedBody = rb;
+        // nextPart.GetComponent<Joint>().connectedArticulationBody = endrb;
         // GetComponent<Joint>().connectedBody = nextPart.GetComponent<Rigidbody>();
         isLast = false;
     }
