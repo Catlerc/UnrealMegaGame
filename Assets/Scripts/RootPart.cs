@@ -23,7 +23,7 @@ public class RootPart : MonoBehaviour
         var nextPart = Instantiate(partPrefab);
         nextPart.transform.position = end.position;
         // nextPart.GetComponent<RootPart>().model.rotation.SetLookRotation(vec);
-        nextPart.GetComponent<Joint>().connectedBody = rb;
+        nextPart.GetComponent<Joint>().connectedBody = endrb;
         // nextPart.GetComponent<Joint>().connectedArticulationBody = endrb;
         // GetComponent<Joint>().connectedBody = nextPart.GetComponent<Rigidbody>();
         isLast = false;
