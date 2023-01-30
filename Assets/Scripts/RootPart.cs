@@ -10,31 +10,40 @@ public class RootPart : MonoBehaviour
     public bool isLast = true;
     public Transform end;
     public Rigidbody rb;
-    public Rigidbody endrb;
+
+    public FixedJoint joint;
+
+    public RootPart next = null;
+    public RootPart old = null;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
+        // joint.autoConfigureConnectedAnchor = true;
     }
 
 
-    void CreateNextPart(Vector3 vec)
+    public RootPart CreateNextPart(Vector3 targetPos)
     {
         var nextPart = Instantiate(partPrefab);
+        nextPart.transform.rotation = Quaternion.LookRotation(targetPos - transform.position);
         nextPart.transform.position = end.position;
-        // nextPart.GetComponent<RootPart>().model.rotation.SetLookRotation(vec);
-        nextPart.GetComponent<Joint>().connectedBody = endrb;
-        // nextPart.GetComponent<Joint>().connectedArticulationBody = endrb;
-        // GetComponent<Joint>().connectedBody = nextPart.GetComponent<Rigidbody>();
+        nextPart.GetComponent<Joint>().connectedBody = rb;
         isLast = false;
+        print(end.rotation);
+        var nextPartRootPart = nextPart.GetComponent<RootPart>();
+        next = nextPartRootPart;
+        next.old = this;
+        return nextPartRootPart;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && isLast)
-        {
-            CreateNextPart(new Vector3(1,1,0));
-        }
-        
+        // if (Input.GetKeyDown(KeyCode.W) && isLast)
+        // {
+        //     CreateNextPart(new Vector3(1, 1, 0));
+        // }
     }
 }
